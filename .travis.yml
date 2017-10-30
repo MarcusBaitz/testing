@@ -1,5 +1,7 @@
-sudo: false
+sudo: required
 language: java
+node_js:
+  - "6"
 services:
 - docker
 cache:
@@ -12,8 +14,17 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+dist: trusty
 addons:
+  chrome: stable
   sauce_connect:
     username: "mBaitz"
     access_key: "8ebbdbb7-1c26-4ab6-8440-f5449f8d82f5"
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  - rackup  # start a Web server
+  - sleep 3 # give Web server some time to bind to sockets, etc
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
