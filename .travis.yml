@@ -18,7 +18,7 @@ dist: trusty
 addons:
   chrome: stable
   sauce_connect:
-    username: "mBaitz"
+    username: "mbaitz"
     access_key: "8ebbdbb7-1c26-4ab6-8440-f5449f8d82f5"
 before_script:
   - "export DISPLAY=:99.0"
