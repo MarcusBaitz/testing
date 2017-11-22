@@ -14,6 +14,14 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+deploy:
+  provider: releases
+  api_key: ${GITHUB_DEPLOY_TOKEN}
+  file_glob: true
+  file: testfile.txt
+  skip_cleanup: true
+  on:
+    tags: true
 dist: trusty
 addons:
   chrome: stable
